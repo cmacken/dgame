@@ -14,5 +14,7 @@ dependencies = [
     "rich",
     "matplotlib",
     "notebook",
-    "pyqt5"
+    "pyqt5",
+    "geopandas",
+    "rioxarray"
 ]
