@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QTabWidget, QWidget, QVBoxLayout, QLabel
-from dgame.gui.map_view import MapView
+from dgame.gui.map import MapView
 
 class MapLogPanel(QTabWidget):
     def __init__(self):

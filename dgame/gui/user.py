@@ -1,7 +1,9 @@
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLineEdit, QPushButton
 
 class InputPanel(QWidget):
+
     def __init__(self):
+        
         super().__init__()
         layout = QHBoxLayout()
         self.input_field = QLineEdit()

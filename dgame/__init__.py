@@ -1,0 +1,1 @@
+from dgame.tools.config import Config

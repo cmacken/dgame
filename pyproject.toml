@@ -16,5 +16,6 @@ dependencies = [
     "notebook",
     "pyqt5",
     "geopandas",
-    "rioxarray"
+    "rioxarray",
+    "toml"
 ]

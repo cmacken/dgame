@@ -1,14 +1,20 @@
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsRectItem
 from PyQt5.QtGui import QBrush, QColor
 from PyQt5.QtCore import QRectF, Qt
+from PyQt5.QtWidgets import QGraphicsPixmapItem
+from PyQt5.QtGui import QPixmap
+
+from dgame import Config
+
+CONFIG = Config('C:\\Users\\camth\\Development\\dgame\\config.toml')
 
 class MapView(QGraphicsView):
     def __init__(self, world_data):
 
-        self._zoom = 0
-        self._zoom_step = 1.25  # zoom factor per wheel tick
-        self._max_zoom = 10
-        self._min_zoom = -10
+        self._zoom      = CONFIG.get('options.initial_zoom')
+        self._zoom_step = CONFIG.get('options.zoom_step')
+        self._max_zoom  = CONFIG.get('options.max_zoom')
+        self._min_zoom  = CONFIG.get('options.min_zoom')
 
         self.colormap = {
             10: "darkGreen",
@@ -25,7 +31,7 @@ class MapView(QGraphicsView):
         
         super().__init__()
         self.world_data = world_data
-        self.tile_size = 32  # pixels
+        self.tile_size = CONFIG.get('options.tile_size')
         self.scene = QGraphicsScene(self)
         self.setScene(self.scene)
         self.load_world(world_data)
@@ -64,3 +70,20 @@ class MapView(QGraphicsView):
             return
 
         self.scale(zoom_factor, zoom_factor)
+
+
+    def draw_entity(self, x, y, pixmap):
+        """
+        Draws an image-based marker at tile coordinate (x, y).
+        Arguments:
+            x, y    -- tile coordinates (column, row)
+            pixmap  -- QPixmap to draw
+        """
+        px = x * self.tile_size
+        py = y * self.tile_size
+
+        item = QGraphicsPixmapItem(pixmap)
+        item.setOffset(px, py)
+        item.setZValue(10)
+        self.scene.addItem(item)
+        return item
