@@ -1,1 +1,1 @@
-from dgame.tools.config import Config
+from dgame.core.misc.config import Config
