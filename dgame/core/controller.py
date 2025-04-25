@@ -24,10 +24,14 @@ class GameController(QObject):
         self.T = 0
 
         WMAN.create(LumberCamp  , 0, 0, 0)
+        WMAN.create(LumberCamp  , 0, 0, 0)
+        WMAN.create(LumberCamp  , 0, 0, 0)
+        WMAN.create(Quarry      , 0, 0, 0)
+        WMAN.create(Quarry      , 0, 0, 0)
         WMAN.create(Quarry      , 0, 0, 0)
         WMAN.create(Factory     , 0, 0, 0)
-        #self.PLAYERS[0].MODIFIERS.append(Addition(0.1, ['wood','stone']))
-        #self.PLAYERS[0].MODIFIERS.append(Addition(0.25, ['stone']))
+
+        self.PLAYERS[0].MODIFIERS.append(Multiplier(5.0, ['wood','stone']))
 
 
     def create_players(self, nplayers):
@@ -46,7 +50,12 @@ class GameController(QObject):
         for player in self.PLAYERS:
             player.resolve()
             # Get all production facilities
-            print(f'T-{self.T} | {player.NAME} | {player.resources['wood']:.2f} | {player.resources['stone']:.2f} | {player.resources['money']:.2f}')
+            print(
+                f"T-{int(self.T):<3} | {player.NAME:<10} | "
+                f"wood: {int(player.resources['wood']):>3} ({int(sum(player.CHANGES['wood'])):+})   "
+                f"stone: {int(player.resources['stone']):>3} ({int(sum(player.CHANGES['stone'])):+})   "
+                f"money: {int(player.resources['money']):>3} ({int(sum(player.CHANGES['money'])):+})"
+            )
 
         # Emit signal to update UI, if needed
         self.state_updated.emit()

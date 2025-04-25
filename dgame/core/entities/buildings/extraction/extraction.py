@@ -10,9 +10,7 @@ class Extraction(Building):
         return self.BASE_RATES[res][self.LEVEL]
 
     def extract(self, player):
-        out = {}
         for resource in self.BASE_RATES:
             base = self.base_resource(resource)
             final = apply_modifiers(resource, base, player.MODIFIERS)
-            player.resources[resource] = player.resources[resource] + final
-        return out
+            player.edit_resource(resource, final)

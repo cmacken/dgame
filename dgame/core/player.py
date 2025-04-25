@@ -1,5 +1,5 @@
 from dgame.core import WorldManager
-
+import numpy as np
 
 
 
@@ -8,16 +8,21 @@ class PlayerManager:
     TID = None
     NAME = None
     
-    MODIFIERS = [ ]
+    MODIFIERS = []
 
     resources = {
-        'wood' : 0,
-        'stone' : 0,
+        'wood' : 150,
+        'stone' : 150,
         'money' : 0,
     }
 
-    def __init__(self, team_name, team_id):
+    resources_max = {
+        'wood' : 250,
+        'stone' : 250,
+        'money' : 250,
+    }
 
+    def __init__(self, team_name, team_id):
         self.TID  = team_id
         self.NAME = team_name
 
@@ -36,15 +41,22 @@ class PlayerManager:
     def get_entities(self):
         return self.get_production() + self.get_extraction() + self.get_units()
     
-
-
+    def edit_resource(self, name, value):
+        if name in self.CHANGES:
+            self.CHANGES[name].append(value)
+        else:
+            self.CHANGES[name] = [value]
+        self.resources[name] = self.resources[name] + value
 
     def resolve(self):
 
-        for building in self.get_extraction():
-            prod = building.extract(self)
-            pass
+        self.CHANGES = {}
 
+        for building in self.get_extraction():
+            building.extract(self)
         for building in self.get_production():
-            prod = building.produce(self)
-            pass
+            building.produce(self)
+
+        # Cap resources
+        for res, nmax in self.resources_max.items():
+            self.resources[res] = np.clip(self.resources[res], 0,nmax)

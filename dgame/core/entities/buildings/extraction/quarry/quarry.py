@@ -6,8 +6,8 @@ class Quarry(Extraction):
 
     BASE_RATES = {
         'stone' : {
-            1 : 0.5,
-            2 : 1.0,
-            3 : 1.5
+            1 : 1.0,
+            2 : 2.0,
+            3 : 3.0
         }
     }

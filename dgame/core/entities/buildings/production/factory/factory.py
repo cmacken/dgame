@@ -4,25 +4,19 @@ from dgame.core.entities.buildings.production.production import Production
 class Factory(Production):
 
 
-    RECIPE = ({'stone' : 5, 'wood' : 5},
-              {'money' : 1})
+    RECIPE = {'stone' : -5, 
+               'wood' : -5, 
+               'money' : 1}
 
     def produce(self, player):
 
-
-        in_res, out_res = self.RECIPE
-        
-        # Check have the resources
-        for res, v in in_res.items():
-            if player.resources[res] < v:
+        for res, v in self.RECIPE.items():
+            if (player.resources[res] + v) < 0:
                 return
 
-        # Consume
-        for res, v in in_res.items():
-            player.resources[res]  = player.resources[res] - v
+        # Check have the resources
+        for res, v in self.RECIPE.items():
+            player.edit_resource(res, v)
 
-        # Add
-        for res, v in out_res.items():
-            player.resources[res]  = player.resources[res] + v
 
 
