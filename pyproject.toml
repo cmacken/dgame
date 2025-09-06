@@ -19,7 +19,9 @@ dependencies = [
     "rioxarray",
     "toml"
 ]
+[tool.setuptools]
+packages = ["dgame"] 
+
 [tool.setuptools.package-data]
-"dgame.assets" = ["*.png", "*.json"]
-[options]
-include_package_data = true
+"dgame" = ["options.json"]
+"dgame.assets" = ["*"]

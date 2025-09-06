@@ -1,2 +1,1 @@
-from dgame.core.world.manager import WorldManager
-from dgame.core.player import PlayerManager
+from dgame.core.engine import GameEngine

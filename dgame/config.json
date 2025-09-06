@@ -1,0 +1,11 @@
+{
+    "DEFAULT_TEXTURE" : ["textures", "missing.png"],
+    "START_DATE" : "1500/01/01",
+    "TICK_VALUE" : 1,
+    "TICK_UNIT"  : "DAYS",
+    "RESOURCE_FIELDNAME" : "RESOURCE",
+    "BASEMAP" : {
+        "LANDTYPE_PATH" : ["maps", "landtype.tif"],
+        "ELEVATION_PATH" : ["maps", "elevation.tif"]
+    }
+}
