@@ -1,0 +1,150 @@
+{
+  "base": {
+    "terrain_path": [
+      "map",
+      "layers",
+      "terrain.tif"
+    ],
+    "elevation_path": [
+      "map",
+      "layers",
+      "elevation.tif"
+    ],
+    "xmin": -180,
+    "xmax": 180,
+    "ymin": -90,
+    "ymax": 90
+  },
+  "terrains": [
+    {
+      "dn": 0,
+      "name": "Water",
+      "rgb": [
+        30,
+        60,
+        180
+      ],
+      "desc": "Large bodies of liquid water such as oceans, lakes, and rivers. Generally impassable without naval or aerial units."
+    },
+    {
+      "dn": 1,
+      "name": "Grassland",
+      "rgb": [
+        90,
+        200,
+        90
+      ],
+      "desc": "Open areas dominated by grasses and small shrubs. Ideal for agriculture or settlements due to moderate fertility."
+    },
+    {
+      "dn": 2,
+      "name": "Forest",
+      "rgb": [
+        20,
+        120,
+        40
+      ],
+      "desc": "Dense woodland regions rich in biodiversity. Slows movement and provides resources such as timber."
+    },
+    {
+      "dn": 3,
+      "name": "Desert",
+      "rgb": [
+        220,
+        200,
+        90
+      ],
+      "desc": "Arid terrain with minimal vegetation and extreme temperature variations. Difficult for agriculture and habitation."
+    },
+    {
+      "dn": 4,
+      "name": "Mountain",
+      "rgb": [
+        150,
+        150,
+        150
+      ],
+      "desc": "High-relief terrain with steep slopes and rocky surfaces. Generally cold, rugged, and low in fertility."
+    },
+    {
+      "dn": 5,
+      "name": "Tundra",
+      "rgb": [
+        180,
+        220,
+        220
+      ],
+      "desc": "Cold, treeless regions with permafrost and low-growing vegetation. Limited biodiversity and slow ecological processes."
+    }
+  ],
+  "resources": {
+    "defs": [
+      {
+        "rid": "oil",
+        "name": "Oil",
+        "offset": 0,
+        "scale": 1,
+        "units": "m3"
+      },
+      {
+        "rid": "wood",
+        "name": "Wood",
+        "offset": 0,
+        "scale": 1,
+        "units": "t"
+      }
+    ],
+    "layers": [
+      {
+        "name": "Oil Fields",
+        "provides": [
+          "oil"
+        ],
+        "path": [
+          "map",
+          "layers",
+          "oil.geojson"
+        ],
+        "field": "DN"
+      }
+    ]
+  },
+  "conditions": {
+    "defs": [
+      {
+        "cid": "temp",
+        "name": "Temperature",
+        "offset": 0,
+        "scale": 1,
+        "units": "o"
+      },
+      {
+        "cid": "rainfall",
+        "name": "Rainfall",
+        "offset": 0,
+        "scale": 1,
+        "units": "mm"
+      }
+    ],
+    "layers": [
+      {
+        "name": "Temperature",
+        "cid": "temp",
+        "path": [
+          "map",
+          "layers",
+          "temperature.tif"
+        ]
+      },
+      {
+        "name": "Rainfall",
+        "cid": "rainfall",
+        "path": [
+          "map",
+          "layers",
+          "rainfall.tif"
+        ]
+      }
+    ]
+  }
+}

@@ -1,11 +1,16 @@
 import json
 from importlib.resources import files
+from dgame.core.utils import get_logger
+
+logger = get_logger(__name__)
 
 class Config:
+    
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
+            logger.info('Loading global configuration...')
             cls._instance = super().__new__(cls)
             cls._instance._load_default_config()
         return cls._instance

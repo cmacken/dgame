@@ -1,6 +1,0 @@
-[options]
-initial_zoom = 0
-zoom_step = 1.25
-max_zoom = 10
-min_zoom = -10
-tile_size = 32
